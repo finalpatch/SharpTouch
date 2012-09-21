@@ -31,13 +31,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.generalPage = new System.Windows.Forms.TabPage();
             this.m_autoStart = new System.Windows.Forms.CheckBox();
-            this.aboutPage = new System.Windows.Forms.TabPage();
             this.settingsPage = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.m_apiVer = new System.Windows.Forms.Label();
+            this.aboutPage = new System.Windows.Forms.TabPage();
             this.m_devName = new System.Windows.Forms.Label();
+            this.m_apiVer = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.m_exit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.generalPage.SuspendLayout();
@@ -61,7 +61,7 @@
             this.generalPage.Location = new System.Drawing.Point(4, 22);
             this.generalPage.Name = "generalPage";
             this.generalPage.Padding = new System.Windows.Forms.Padding(3);
-            this.generalPage.Size = new System.Drawing.Size(352, 183);
+            this.generalPage.Size = new System.Drawing.Size(402, 183);
             this.generalPage.TabIndex = 0;
             this.generalPage.Text = "General";
             this.generalPage.UseVisualStyleBackColor = true;
@@ -77,6 +77,15 @@
             this.m_autoStart.UseVisualStyleBackColor = true;
             this.m_autoStart.CheckedChanged += new System.EventHandler(this.m_autoStart_CheckedChanged);
             // 
+            // settingsPage
+            // 
+            this.settingsPage.Location = new System.Drawing.Point(4, 22);
+            this.settingsPage.Name = "settingsPage";
+            this.settingsPage.Size = new System.Drawing.Size(402, 183);
+            this.settingsPage.TabIndex = 2;
+            this.settingsPage.Text = "Settings";
+            this.settingsPage.UseVisualStyleBackColor = true;
+            // 
             // aboutPage
             // 
             this.aboutPage.Controls.Add(this.m_devName);
@@ -91,41 +100,14 @@
             this.aboutPage.Text = "About";
             this.aboutPage.UseVisualStyleBackColor = true;
             // 
-            // settingsPage
+            // m_devName
             // 
-            this.settingsPage.Location = new System.Drawing.Point(4, 22);
-            this.settingsPage.Name = "settingsPage";
-            this.settingsPage.Size = new System.Drawing.Size(352, 212);
-            this.settingsPage.TabIndex = 2;
-            this.settingsPage.Text = "Settings";
-            this.settingsPage.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SharpTouch v0.1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Synaptics API version:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Synaptics Device:";
+            this.m_devName.AutoSize = true;
+            this.m_devName.Location = new System.Drawing.Point(123, 41);
+            this.m_devName.Name = "m_devName";
+            this.m_devName.Size = new System.Drawing.Size(68, 13);
+            this.m_devName.TabIndex = 4;
+            this.m_devName.Text = "device name";
             // 
             // m_apiVer
             // 
@@ -136,14 +118,32 @@
             this.m_apiVer.TabIndex = 3;
             this.m_apiVer.Text = "api version";
             // 
-            // m_devName
+            // label3
             // 
-            this.m_devName.AutoSize = true;
-            this.m_devName.Location = new System.Drawing.Point(123, 41);
-            this.m_devName.Name = "m_devName";
-            this.m_devName.Size = new System.Drawing.Size(68, 13);
-            this.m_devName.TabIndex = 4;
-            this.m_devName.Text = "device name";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Synaptics Device:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Synaptics API version:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "SharpTouch v0.1";
             // 
             // m_exit
             // 
