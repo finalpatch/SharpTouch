@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace SharpTouch
 {
@@ -45,8 +46,19 @@ namespace SharpTouch
             // must create form (to get the sync context) before start processing events
             m_cpl = new ControlPanel(m_api, m_dev);
 
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+
             m_dev.SetEventNotification(m_notifyEvent.SafeWaitHandle.DangerousGetHandle());
             ProcessTouchEvents();
+        }
+
+        async void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            if (e.Mode == PowerModes.Resume)
+            {
+                await Task.Delay(20);
+                m_dev.SetEventNotification(m_notifyEvent.SafeWaitHandle.DangerousGetHandle());
+            }
         }
 
         public void ShowControlPanel()
