@@ -121,7 +121,7 @@ namespace SharpTouch
                 return;
             }
 
-            if ((fingerState & (int)SYNCTRLLib.SynFingerFlags.SF_FingerMoving) == 0)
+            if ((fingerState & (int)SYNCTRLLib.SynFingerFlags.SF_FingerMotion) == 0)
                 return;
 
             if (Math.Abs(xDelta) > motionThreshhold || Math.Abs(yDelta) > motionThreshhold)
