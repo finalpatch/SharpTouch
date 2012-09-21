@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using System.Linq;
 
 namespace SharpTouch
 {
@@ -179,7 +180,7 @@ namespace SharpTouch
         {
             foreach (var key in keys)
                 keybd_event((byte)key, 0, 0, UIntPtr.Zero);
-            foreach (var key in keys)
+            foreach (var key in keys.Reverse())
                 keybd_event((byte)key, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
         }
 
