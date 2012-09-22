@@ -39,9 +39,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.m_exit = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.m_scrollSpeed = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.m_speedLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.generalPage.SuspendLayout();
+            this.settingsPage.SuspendLayout();
             this.aboutPage.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_scrollSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -79,6 +87,8 @@
             // 
             // settingsPage
             // 
+            this.settingsPage.Controls.Add(this.groupBox2);
+            this.settingsPage.Controls.Add(this.groupBox1);
             this.settingsPage.Location = new System.Drawing.Point(4, 22);
             this.settingsPage.Name = "settingsPage";
             this.settingsPage.Size = new System.Drawing.Size(402, 183);
@@ -155,6 +165,61 @@
             this.m_exit.UseVisualStyleBackColor = true;
             this.m_exit.Click += new System.EventHandler(this.m_exit_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.m_speedLabel);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.m_scrollSpeed);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(188, 183);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Scroll Settings";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(202, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 183);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Gesture Settings";
+            // 
+            // m_scrollSpeed
+            // 
+            this.m_scrollSpeed.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.m_scrollSpeed.LargeChange = 100;
+            this.m_scrollSpeed.Location = new System.Drawing.Point(6, 36);
+            this.m_scrollSpeed.Maximum = 1500;
+            this.m_scrollSpeed.Name = "m_scrollSpeed";
+            this.m_scrollSpeed.Size = new System.Drawing.Size(176, 45);
+            this.m_scrollSpeed.SmallChange = 20;
+            this.m_scrollSpeed.TabIndex = 0;
+            this.m_scrollSpeed.TickFrequency = 100;
+            this.m_scrollSpeed.Value = 1000;
+            this.m_scrollSpeed.Scroll += new System.EventHandler(this.m_scrollSpeed_Scroll);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Speed";
+            // 
+            // m_speedLabel
+            // 
+            this.m_speedLabel.AutoSize = true;
+            this.m_speedLabel.Location = new System.Drawing.Point(51, 20);
+            this.m_speedLabel.Name = "m_speedLabel";
+            this.m_speedLabel.Size = new System.Drawing.Size(33, 13);
+            this.m_speedLabel.TabIndex = 2;
+            this.m_speedLabel.Text = "100%";
+            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,8 +233,12 @@
             this.tabControl1.ResumeLayout(false);
             this.generalPage.ResumeLayout(false);
             this.generalPage.PerformLayout();
+            this.settingsPage.ResumeLayout(false);
             this.aboutPage.ResumeLayout(false);
             this.aboutPage.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_scrollSpeed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -187,5 +256,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button m_exit;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TrackBar m_scrollSpeed;
+        private System.Windows.Forms.Label m_speedLabel;
     }
 }

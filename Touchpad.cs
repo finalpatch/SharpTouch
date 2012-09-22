@@ -19,10 +19,10 @@ namespace SharpTouch
     public class Touchpad
     {
         const int motionThreshhold = 500;
-        const int xScrollScale = 1000;
-        const int yScrollScale = 1000;
         const int pushPullThreshold = 200;
         const int swipeThreshold = 200;
+        int xScrollScale = 1000;
+        int yScrollScale = 1000;
 
         readonly SYNCOMLib.SynAPI m_api = new SYNCOMLib.SynAPIClass();
         readonly SYNCOMLib.SynDevice m_dev = new SYNCOMLib.SynDeviceClass();
@@ -59,11 +59,22 @@ namespace SharpTouch
 
             // must create form (to get the sync context) before start processing events
             m_cpl = new ControlPanel(m_api, m_dev);
+            m_cpl.SettingsChanged += m_cpl_SettingsChanged;
 
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
             m_dev.SetEventNotification(m_notifyEvent.SafeWaitHandle.DangerousGetHandle());
             ProcessTouchEvents();
+
+#if DEBUG
+            ShowControlPanel();
+#endif
+        }
+
+        void m_cpl_SettingsChanged()
+        {
+            xScrollScale = m_cpl.ScrollSpeedX;
+            yScrollScale = m_cpl.ScrollSpeedY;
         }
 
         async void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)

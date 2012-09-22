@@ -16,6 +16,19 @@ namespace SharpTouch
     {
         readonly Assembly asm = Assembly.GetExecutingAssembly();
         const string cvrun = @"Software\Microsoft\Windows\CurrentVersion\Run";
+        const string settingsKeyName = @"Software\SharpTouch";
+
+        public delegate void SettingsChangedEventHandler();
+        public event SettingsChangedEventHandler SettingsChanged;
+
+        public int ScrollSpeedX
+        {
+            get { return m_scrollSpeed.Value; }
+        }
+        public int ScrollSpeedY
+        {
+            get { return m_scrollSpeed.Value; }
+        }
 
         public ControlPanel(SYNCOMLib.SynAPI api, SYNCOMLib.SynDevice device)
         {
@@ -25,6 +38,13 @@ namespace SharpTouch
             using (RegistryKey run = Registry.CurrentUser.OpenSubKey(cvrun))
             {
                 m_autoStart.Checked = (run.GetValue(asm.GetName().Name) != null);
+            }
+
+            // speed
+            using (RegistryKey mySettings = Registry.CurrentUser.CreateSubKey(settingsKeyName))
+            {
+                m_scrollSpeed.Value = (int)mySettings.GetValue("ScrollSpeed", 1000);
+                m_speedLabel.Text = string.Format("{0}%", m_scrollSpeed.Value / 10);
             }
 
             // api version and device version
@@ -68,6 +88,17 @@ namespace SharpTouch
             byte[] buf = new byte[bufSize];
             dev.GetStringProperty((int)prop, ref buf[0], ref bufSize);
             return System.Text.ASCIIEncoding.ASCII.GetString(buf, 0, bufSize);
+        }
+
+        private void m_scrollSpeed_Scroll(object sender, EventArgs e)
+        {
+            m_speedLabel.Text = string.Format("{0}%", m_scrollSpeed.Value / 10);
+            using (RegistryKey mySettings = Registry.CurrentUser.CreateSubKey(settingsKeyName))
+            {
+                mySettings.SetValue("ScrollSpeed", m_scrollSpeed.Value);
+                if (SettingsChanged != null)
+                    SettingsChanged();
+            }
         }
     }
 }
