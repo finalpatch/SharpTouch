@@ -81,8 +81,11 @@ namespace SharpTouch
         {
             if (e.Mode == PowerModes.Resume)
             {
-                await Task.Delay(20);
-                m_dev.SetEventNotification(m_notifyEvent.SafeWaitHandle.DangerousGetHandle());
+                for (int i = 0; i < 20; ++i)
+                {
+                    await Task.Delay(500);
+                    m_dev.SetEventNotification(m_notifyEvent.SafeWaitHandle.DangerousGetHandle());
+                }
             }
         }
 
@@ -141,17 +144,16 @@ namespace SharpTouch
             // 2 finger scroll
             if (numOfFingers == 2)
             {
-                m_scrolling = true;
-
                 int x = 0;
                 int y = 0;
                 packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_X, ref x);
                 packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_Y, ref y);
                 // edge case
-                if (x <= m_xMin || x >= m_xMax || y <= m_yMin || y >= m_yMax)
+                if (m_scrolling && (x <= m_xMin || x >= m_xMax || y <= m_yMin || y >= m_yMax))
                     DoScroll(m_lastScrollX, m_lastScrollY);
                 else
                     DoScroll(xDelta, yDelta);
+                m_scrolling = true;
             }
             else if (numOfFingers == 1 && m_scrolling)
             {
