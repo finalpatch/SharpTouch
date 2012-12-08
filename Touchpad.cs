@@ -31,8 +31,6 @@ namespace SharpTouch
         bool m_actionStarted = false;
         bool m_gestureInProgress = false;
         bool m_scrolling = false;
-        int m_lastScrollX = 0;
-        int m_lastScrollY = 0;
         readonly int m_xMin;
         readonly int m_xMax;
         readonly int m_yMin;
@@ -148,16 +146,16 @@ namespace SharpTouch
                 int y = 0;
                 packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_X, ref x);
                 packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_Y, ref y);
-                // edge case
-                if (m_scrolling && (x <= m_xMin || x >= m_xMax || y <= m_yMin || y >= m_yMax))
-                    DoScroll(m_lastScrollX, m_lastScrollY);
-                else
+                // not at edges
+                if (!(x <= m_xMin || x >= m_xMax || y <= m_yMin || y >= m_yMax))
+                {
                     DoScroll(xDelta, yDelta);
+                }       
                 m_scrolling = true;
             }
             else if (numOfFingers == 1 && m_scrolling)
             {
-                DoScroll(m_lastScrollX, m_lastScrollY);
+                DoScroll(xDelta, yDelta);
             }
             else if (numOfFingers == 3 && !m_actionStarted)
             {
@@ -224,12 +222,8 @@ namespace SharpTouch
         {
             dx = dx * xScrollScale / 1000;
             dy = dy * yScrollScale / 1000;
-
             mouse_event(MOUSEEVENTF_WHEEL, 0, 0, dy, 0);
             mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, dx, 0);
-
-            m_lastScrollX = dx;
-            m_lastScrollY = dy;
         }
 
         void DoKeySeq(Keys[] keys)
