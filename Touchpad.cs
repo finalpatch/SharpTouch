@@ -119,7 +119,11 @@ namespace SharpTouch
 
             packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_ExtraFingerState, ref extraState);
             packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_FingerState, ref fingerState);
-            packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_XDelta, ref xDelta);
+            // only read horizontal offset when shift key is down or caps lock is on
+            if (Control.ModifierKeys.HasFlag(Keys.Shift) || Control.IsKeyLocked(Keys.CapsLock))
+            {
+                packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_XDelta, ref xDelta);
+            }
             packet.GetProperty((int)SYNCTRLLib.SynPacketProperty.SP_YDelta, ref yDelta);
 
             int numOfFingers = extraState & 3;
