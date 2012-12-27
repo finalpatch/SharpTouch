@@ -33,6 +33,14 @@
             this.m_autoStart = new System.Windows.Forms.CheckBox();
             this.settingsPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.m_cbRightAction = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.m_cbLeftAction = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.m_cbDownAction = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.m_cbUpAction = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_speedLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,14 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.m_exit = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.m_cbUpAction = new System.Windows.Forms.ComboBox();
-            this.m_cbDownAction = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.m_cbLeftAction = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.m_cbRightAction = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.generalPage.SuspendLayout();
             this.settingsPage.SuspendLayout();
@@ -123,8 +124,85 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gesture Settings";
             // 
+            // m_cbRightAction
+            // 
+            this.m_cbRightAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbRightAction.FormattingEnabled = true;
+            this.m_cbRightAction.Location = new System.Drawing.Point(10, 160);
+            this.m_cbRightAction.Name = "m_cbRightAction";
+            this.m_cbRightAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbRightAction.TabIndex = 7;
+            this.m_cbRightAction.Tag = "RightAction";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 143);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "3-finger swipe right";
+            // 
+            // m_cbLeftAction
+            // 
+            this.m_cbLeftAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbLeftAction.FormattingEnabled = true;
+            this.m_cbLeftAction.Location = new System.Drawing.Point(10, 119);
+            this.m_cbLeftAction.Name = "m_cbLeftAction";
+            this.m_cbLeftAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbLeftAction.TabIndex = 5;
+            this.m_cbLeftAction.Tag = "LeftAction";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 102);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "3-finger swipe left";
+            // 
+            // m_cbDownAction
+            // 
+            this.m_cbDownAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbDownAction.FormattingEnabled = true;
+            this.m_cbDownAction.Location = new System.Drawing.Point(10, 78);
+            this.m_cbDownAction.Name = "m_cbDownAction";
+            this.m_cbDownAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbDownAction.TabIndex = 3;
+            this.m_cbDownAction.Tag = "DownAction";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "3-finger swipe down";
+            // 
+            // m_cbUpAction
+            // 
+            this.m_cbUpAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbUpAction.FormattingEnabled = true;
+            this.m_cbUpAction.Location = new System.Drawing.Point(10, 37);
+            this.m_cbUpAction.Name = "m_cbUpAction";
+            this.m_cbUpAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbUpAction.TabIndex = 1;
+            this.m_cbUpAction.Tag = "UpAction";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "3-finger swipe up";
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.m_speedLabel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.m_scrollSpeed);
@@ -237,81 +315,14 @@
             this.m_exit.UseVisualStyleBackColor = true;
             this.m_exit.Click += new System.EventHandler(this.m_exit_Click);
             // 
-            // label5
+            // label9
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "3-finger swipe up";
-            // 
-            // m_cbUpAction
-            // 
-            this.m_cbUpAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m_cbUpAction.FormattingEnabled = true;
-            this.m_cbUpAction.Location = new System.Drawing.Point(10, 37);
-            this.m_cbUpAction.Name = "m_cbUpAction";
-            this.m_cbUpAction.Size = new System.Drawing.Size(184, 21);
-            this.m_cbUpAction.TabIndex = 1;
-            this.m_cbUpAction.Tag = "UpAction";
-            // 
-            // m_cbDownAction
-            // 
-            this.m_cbDownAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m_cbDownAction.FormattingEnabled = true;
-            this.m_cbDownAction.Location = new System.Drawing.Point(10, 78);
-            this.m_cbDownAction.Name = "m_cbDownAction";
-            this.m_cbDownAction.Size = new System.Drawing.Size(184, 21);
-            this.m_cbDownAction.TabIndex = 3;
-            this.m_cbDownAction.Tag = "DownAction";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 61);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "3-finger swipe down";
-            // 
-            // m_cbLeftAction
-            // 
-            this.m_cbLeftAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m_cbLeftAction.FormattingEnabled = true;
-            this.m_cbLeftAction.Location = new System.Drawing.Point(10, 119);
-            this.m_cbLeftAction.Name = "m_cbLeftAction";
-            this.m_cbLeftAction.Size = new System.Drawing.Size(184, 21);
-            this.m_cbLeftAction.TabIndex = 5;
-            this.m_cbLeftAction.Tag = "LeftAction";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 102);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "3-finger swipe left";
-            // 
-            // m_cbRightAction
-            // 
-            this.m_cbRightAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m_cbRightAction.FormattingEnabled = true;
-            this.m_cbRightAction.Location = new System.Drawing.Point(10, 160);
-            this.m_cbRightAction.Name = "m_cbRightAction";
-            this.m_cbRightAction.Size = new System.Drawing.Size(184, 21);
-            this.m_cbRightAction.TabIndex = 7;
-            this.m_cbRightAction.Tag = "RightAction";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 143);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "3-finger swipe right";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 88);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(149, 39);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Tip: Hold down SHIFT key or\r\nturn on CAPS LOCK to enable\r\nhorizontal scrolling";
             // 
             // ControlPanel
             // 
@@ -364,5 +375,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox m_cbUpAction;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
     }
 }
