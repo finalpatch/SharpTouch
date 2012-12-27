@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SharpTouch
 {
@@ -37,6 +38,18 @@ namespace SharpTouch
         readonly int m_yMax;
         System.Drawing.Point m_startPosition = new System.Drawing.Point(0, 0);
         ControlPanel m_cpl;
+
+        readonly Dictionary<GestureAction, Keys[]> m_actionMap = new Dictionary<GestureAction, Keys[]>()
+        {
+            {GestureAction.AeroPeek, new Keys[] { Keys.LWin, Keys.Space }},
+            {GestureAction.Flip2D, new Keys[] { Keys.ControlKey, Keys.Menu, Keys.Tab }},
+            {GestureAction.Flip3D, new Keys[] { Keys.LWin, Keys.ControlKey, Keys.Tab }},
+            {GestureAction.DockToLeft, new Keys[] { Keys.LWin, Keys.Left }},
+            {GestureAction.DockToRight, new Keys[] { Keys.LWin, Keys.Right }},
+            {GestureAction.Maximize, new Keys[] { Keys.LWin, Keys.Up }},
+            {GestureAction.Minimize, new Keys[] { Keys.LWin, Keys.Down }},
+            {GestureAction.MinimizeOthers, new Keys[] { Keys.LWin, Keys.Home }},
+        };
 
         public Touchpad()
         {
@@ -193,30 +206,30 @@ namespace SharpTouch
                 {
                     if (ySwipe > pushPullThreshold)
                     {
-                        // push for flip3d
+                        // push
                         m_actionStarted = true;
-                        DoKeySeq(new Keys[] { Keys.LWin, Keys.ControlKey, Keys.Tab });
+                        DoKeySeq(m_actionMap[m_cpl.UpAction]);
                     }
                     else if (ySwipe < (-pushPullThreshold))
                     {
-                        // pull for ctrl-alt-tab
+                        // pull
                         m_actionStarted = true;
-                        DoKeySeq(new Keys[] { Keys.ControlKey, Keys.Menu, Keys.Tab });
+                        DoKeySeq(m_actionMap[m_cpl.DownAction]);
                     }
                 }
                 else
                 {
                     if (xSwipe < -swipeThreshold)
                     {
-                        // dock left
+                        // left
                         m_actionStarted = true;
-                        DoKeySeq(new Keys[] { Keys.LWin, Keys.Left });
+                        DoKeySeq(m_actionMap[m_cpl.LeftAction]);
                     }
                     else if (xSwipe > swipeThreshold)
                     {
-                        // dock right
+                        // right
                         m_actionStarted = true;
-                        DoKeySeq(new Keys[] { Keys.LWin, Keys.Right });
+                        DoKeySeq(m_actionMap[m_cpl.RightAction]);
                     }
                 }
             }

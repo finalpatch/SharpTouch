@@ -32,6 +32,11 @@
             this.generalPage = new System.Windows.Forms.TabPage();
             this.m_autoStart = new System.Windows.Forms.CheckBox();
             this.settingsPage = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.m_speedLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.m_scrollSpeed = new System.Windows.Forms.TrackBar();
             this.aboutPage = new System.Windows.Forms.TabPage();
             this.m_devName = new System.Windows.Forms.Label();
             this.m_apiVer = new System.Windows.Forms.Label();
@@ -39,17 +44,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.m_exit = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.m_scrollSpeed = new System.Windows.Forms.TrackBar();
-            this.label4 = new System.Windows.Forms.Label();
-            this.m_speedLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.m_cbUpAction = new System.Windows.Forms.ComboBox();
+            this.m_cbDownAction = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.m_cbLeftAction = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.m_cbRightAction = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.generalPage.SuspendLayout();
             this.settingsPage.SuspendLayout();
-            this.aboutPage.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_scrollSpeed)).BeginInit();
+            this.aboutPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -95,6 +104,69 @@
             this.settingsPage.TabIndex = 2;
             this.settingsPage.Text = "Settings";
             this.settingsPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.m_cbRightAction);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.m_cbLeftAction);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.m_cbDownAction);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.m_cbUpAction);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(202, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 183);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Gesture Settings";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.m_speedLabel);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.m_scrollSpeed);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(188, 183);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Scroll Settings";
+            // 
+            // m_speedLabel
+            // 
+            this.m_speedLabel.AutoSize = true;
+            this.m_speedLabel.Location = new System.Drawing.Point(51, 20);
+            this.m_speedLabel.Name = "m_speedLabel";
+            this.m_speedLabel.Size = new System.Drawing.Size(33, 13);
+            this.m_speedLabel.TabIndex = 2;
+            this.m_speedLabel.Text = "100%";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Speed";
+            // 
+            // m_scrollSpeed
+            // 
+            this.m_scrollSpeed.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.m_scrollSpeed.LargeChange = 100;
+            this.m_scrollSpeed.Location = new System.Drawing.Point(6, 36);
+            this.m_scrollSpeed.Maximum = 1500;
+            this.m_scrollSpeed.Name = "m_scrollSpeed";
+            this.m_scrollSpeed.Size = new System.Drawing.Size(176, 45);
+            this.m_scrollSpeed.SmallChange = 20;
+            this.m_scrollSpeed.TabIndex = 0;
+            this.m_scrollSpeed.TickFrequency = 100;
+            this.m_scrollSpeed.Value = 1000;
+            this.m_scrollSpeed.Scroll += new System.EventHandler(this.m_scrollSpeed_Scroll);
             // 
             // aboutPage
             // 
@@ -165,60 +237,81 @@
             this.m_exit.UseVisualStyleBackColor = true;
             this.m_exit.Click += new System.EventHandler(this.m_exit_Click);
             // 
-            // groupBox1
+            // label5
             // 
-            this.groupBox1.Controls.Add(this.m_speedLabel);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.m_scrollSpeed);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 183);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Scroll Settings";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "3-finger swipe up";
             // 
-            // groupBox2
+            // m_cbUpAction
             // 
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox2.Location = new System.Drawing.Point(202, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 183);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Gesture Settings";
+            this.m_cbUpAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbUpAction.FormattingEnabled = true;
+            this.m_cbUpAction.Location = new System.Drawing.Point(10, 37);
+            this.m_cbUpAction.Name = "m_cbUpAction";
+            this.m_cbUpAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbUpAction.TabIndex = 1;
+            this.m_cbUpAction.Tag = "UpAction";
             // 
-            // m_scrollSpeed
+            // m_cbDownAction
             // 
-            this.m_scrollSpeed.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.m_scrollSpeed.LargeChange = 100;
-            this.m_scrollSpeed.Location = new System.Drawing.Point(6, 36);
-            this.m_scrollSpeed.Maximum = 1500;
-            this.m_scrollSpeed.Name = "m_scrollSpeed";
-            this.m_scrollSpeed.Size = new System.Drawing.Size(176, 45);
-            this.m_scrollSpeed.SmallChange = 20;
-            this.m_scrollSpeed.TabIndex = 0;
-            this.m_scrollSpeed.TickFrequency = 100;
-            this.m_scrollSpeed.Value = 1000;
-            this.m_scrollSpeed.Scroll += new System.EventHandler(this.m_scrollSpeed_Scroll);
+            this.m_cbDownAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbDownAction.FormattingEnabled = true;
+            this.m_cbDownAction.Location = new System.Drawing.Point(10, 78);
+            this.m_cbDownAction.Name = "m_cbDownAction";
+            this.m_cbDownAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbDownAction.TabIndex = 3;
+            this.m_cbDownAction.Tag = "DownAction";
             // 
-            // label4
+            // label6
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Speed";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "3-finger swipe down";
             // 
-            // m_speedLabel
+            // m_cbLeftAction
             // 
-            this.m_speedLabel.AutoSize = true;
-            this.m_speedLabel.Location = new System.Drawing.Point(51, 20);
-            this.m_speedLabel.Name = "m_speedLabel";
-            this.m_speedLabel.Size = new System.Drawing.Size(33, 13);
-            this.m_speedLabel.TabIndex = 2;
-            this.m_speedLabel.Text = "100%";
+            this.m_cbLeftAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbLeftAction.FormattingEnabled = true;
+            this.m_cbLeftAction.Location = new System.Drawing.Point(10, 119);
+            this.m_cbLeftAction.Name = "m_cbLeftAction";
+            this.m_cbLeftAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbLeftAction.TabIndex = 5;
+            this.m_cbLeftAction.Tag = "LeftAction";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 102);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "3-finger swipe left";
+            // 
+            // m_cbRightAction
+            // 
+            this.m_cbRightAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_cbRightAction.FormattingEnabled = true;
+            this.m_cbRightAction.Location = new System.Drawing.Point(10, 160);
+            this.m_cbRightAction.Name = "m_cbRightAction";
+            this.m_cbRightAction.Size = new System.Drawing.Size(184, 21);
+            this.m_cbRightAction.TabIndex = 7;
+            this.m_cbRightAction.Tag = "RightAction";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 143);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "3-finger swipe right";
             // 
             // ControlPanel
             // 
@@ -234,11 +327,13 @@
             this.generalPage.ResumeLayout(false);
             this.generalPage.PerformLayout();
             this.settingsPage.ResumeLayout(false);
-            this.aboutPage.ResumeLayout(false);
-            this.aboutPage.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_scrollSpeed)).EndInit();
+            this.aboutPage.ResumeLayout(false);
+            this.aboutPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -261,5 +356,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TrackBar m_scrollSpeed;
         private System.Windows.Forms.Label m_speedLabel;
+        private System.Windows.Forms.ComboBox m_cbRightAction;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox m_cbLeftAction;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox m_cbDownAction;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox m_cbUpAction;
+        private System.Windows.Forms.Label label5;
     }
 }

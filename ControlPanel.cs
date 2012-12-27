@@ -12,6 +12,19 @@ using System.Reflection;
 
 namespace SharpTouch
 {
+    public enum GestureAction
+    {
+        AeroPeek,
+        Flip2D,
+        Flip3D,
+        MinimizeOthers,
+
+        DockToLeft,
+        DockToRight,
+        Maximize,
+        Minimize,
+    };
+
     public partial class ControlPanel : Form
     {
         readonly Assembly asm = Assembly.GetExecutingAssembly();
@@ -28,6 +41,23 @@ namespace SharpTouch
         public int ScrollSpeedY
         {
             get { return m_scrollSpeed.Value; }
+        }
+
+        public GestureAction UpAction
+        {
+            get { return (GestureAction)m_cbUpAction.SelectedIndex; }
+        }
+        public GestureAction DownAction
+        {
+            get { return (GestureAction)m_cbDownAction.SelectedIndex; }
+        }
+        public GestureAction LeftAction
+        {
+            get { return (GestureAction)m_cbLeftAction.SelectedIndex; }
+        }
+        public GestureAction RightAction
+        {
+            get { return (GestureAction)m_cbRightAction.SelectedIndex; }
         }
 
         public ControlPanel(SYNCOMLib.SynAPI api, SYNCOMLib.SynDevice device)
@@ -47,9 +77,55 @@ namespace SharpTouch
                 m_speedLabel.Text = string.Format("{0}%", m_scrollSpeed.Value / 10);
             }
 
+            FillComboBox(m_cbUpAction);
+            FillComboBox(m_cbDownAction);
+            FillComboBox(m_cbLeftAction);
+            FillComboBox(m_cbRightAction);
+
+            // gestures
+            using (RegistryKey mySettings = Registry.CurrentUser.CreateSubKey(settingsKeyName))
+            {
+                m_cbUpAction.SelectedIndex = (int)mySettings.GetValue("UpAction", (int)GestureAction.Flip3D);
+                m_cbDownAction.SelectedIndex = (int)mySettings.GetValue("DownAction", (int)GestureAction.MinimizeOthers);
+                m_cbLeftAction.SelectedIndex = (int)mySettings.GetValue("LeftAction", (int)GestureAction.DockToLeft);
+                m_cbRightAction.SelectedIndex = (int)mySettings.GetValue("RightAction", (int)GestureAction.DockToRight);
+            }
+
+            m_cbUpAction.SelectedIndexChanged += gestureActionChanged;
+            m_cbDownAction.SelectedIndexChanged += gestureActionChanged;
+            m_cbLeftAction.SelectedIndexChanged += gestureActionChanged;
+            m_cbRightAction.SelectedIndexChanged += gestureActionChanged;
+
             // api version and device version
             m_apiVer.Text = GetSynapticAPIStringProperty(api, SYNCTRLLib.SynAPIStringProperty.SP_VersionString, 100);
             m_devName.Text = GetSynapticDeviceStringProperty(device, SYNCTRLLib.SynDeviceStringProperty.SP_ModelString, 100);
+        }
+
+        private void gestureActionChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            using (RegistryKey mySettings = Registry.CurrentUser.CreateSubKey(settingsKeyName))
+            {
+                mySettings.SetValue((string)cb.Tag, cb.SelectedIndex);
+                if (SettingsChanged != null)
+                    SettingsChanged();
+            }
+        }
+
+        void FillComboBox(ComboBox cb)
+        {
+            string[] items =
+            {
+                "Aero Peek",
+                "Flip2D",
+                "Flip3D",
+                "Minimize Other Windows",
+                "Dock Window to Left",
+                "Dock Window to Right",
+                "Maximize Window",
+                "Minimize Window"
+            };
+            cb.Items.AddRange(items);
         }
 
         private void ControlPanel_FormClosing(object sender, FormClosingEventArgs e)
