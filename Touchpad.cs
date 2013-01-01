@@ -39,18 +39,6 @@ namespace SharpTouch
         System.Drawing.Point m_startPosition = new System.Drawing.Point(0, 0);
         ControlPanel m_cpl;
 
-        readonly Dictionary<GestureAction, Keys[]> m_actionMap = new Dictionary<GestureAction, Keys[]>()
-        {
-            {GestureAction.AeroPeek, new Keys[] { Keys.LWin, Keys.Space }},
-            {GestureAction.Flip2D, new Keys[] { Keys.ControlKey, Keys.Menu, Keys.Tab }},
-            {GestureAction.Flip3D, new Keys[] { Keys.LWin, Keys.ControlKey, Keys.Tab }},
-            {GestureAction.DockToLeft, new Keys[] { Keys.LWin, Keys.Left }},
-            {GestureAction.DockToRight, new Keys[] { Keys.LWin, Keys.Right }},
-            {GestureAction.Maximize, new Keys[] { Keys.LWin, Keys.Up }},
-            {GestureAction.Minimize, new Keys[] { Keys.LWin, Keys.Down }},
-            {GestureAction.MinimizeOthers, new Keys[] { Keys.LWin, Keys.Home }},
-        };
-
         public Touchpad()
         {
             m_api.Initialize();
@@ -178,11 +166,6 @@ namespace SharpTouch
             {
                 Handle3FingerGestures(packet);
             }
-            // show desktop
-            // minimize everything else
-            // pinch zoom
-            // 2 finger rotate
-            // magnifier
         }
 
         private void Handle3FingerGestures(SYNCOMLib.SynPacket packet)
@@ -208,13 +191,13 @@ namespace SharpTouch
                     {
                         // push
                         m_actionStarted = true;
-                        DoKeySeq(m_actionMap[m_cpl.UpAction]);
+                        DoKeySeq(m_cpl.UpAction.KeySeq);
                     }
                     else if (ySwipe < (-pushPullThreshold))
                     {
                         // pull
                         m_actionStarted = true;
-                        DoKeySeq(m_actionMap[m_cpl.DownAction]);
+                        DoKeySeq(m_cpl.DownAction.KeySeq);
                     }
                 }
                 else
@@ -223,13 +206,13 @@ namespace SharpTouch
                     {
                         // left
                         m_actionStarted = true;
-                        DoKeySeq(m_actionMap[m_cpl.LeftAction]);
+                        DoKeySeq(m_cpl.LeftAction.KeySeq);
                     }
                     else if (xSwipe > swipeThreshold)
                     {
                         // right
                         m_actionStarted = true;
-                        DoKeySeq(m_actionMap[m_cpl.RightAction]);
+                        DoKeySeq(m_cpl.RightAction.KeySeq);
                     }
                 }
             }

@@ -12,18 +12,6 @@ using System.Reflection;
 
 namespace SharpTouch
 {
-    public enum GestureAction
-    {
-        AeroPeek,
-        Flip2D,
-        Flip3D,
-        MinimizeOthers,
-
-        DockToLeft,
-        DockToRight,
-        Maximize,
-        Minimize,
-    };
 
     public partial class ControlPanel : Form
     {
@@ -43,21 +31,21 @@ namespace SharpTouch
             get { return m_scrollSpeed.Value; }
         }
 
-        public GestureAction UpAction
+        public Gesture UpAction
         {
-            get { return (GestureAction)m_cbUpAction.SelectedIndex; }
+            get { return (Gesture)m_cbUpAction.SelectedItem; }
         }
-        public GestureAction DownAction
+        public Gesture DownAction
         {
-            get { return (GestureAction)m_cbDownAction.SelectedIndex; }
+            get { return (Gesture)m_cbDownAction.SelectedItem; }
         }
-        public GestureAction LeftAction
+        public Gesture LeftAction
         {
-            get { return (GestureAction)m_cbLeftAction.SelectedIndex; }
+            get { return (Gesture)m_cbLeftAction.SelectedItem; }
         }
-        public GestureAction RightAction
+        public Gesture RightAction
         {
-            get { return (GestureAction)m_cbRightAction.SelectedIndex; }
+            get { return (Gesture)m_cbRightAction.SelectedItem; }
         }
 
         public ControlPanel(SYNCOMLib.SynAPI api, SYNCOMLib.SynDevice device)
@@ -86,9 +74,9 @@ namespace SharpTouch
             using (RegistryKey mySettings = Registry.CurrentUser.CreateSubKey(settingsKeyName))
             {
                 m_cbUpAction.SelectedIndex = (int)mySettings.GetValue("UpAction", (int)GestureAction.Flip3D);
-                m_cbDownAction.SelectedIndex = (int)mySettings.GetValue("DownAction", (int)GestureAction.MinimizeOthers);
-                m_cbLeftAction.SelectedIndex = (int)mySettings.GetValue("LeftAction", (int)GestureAction.DockToLeft);
-                m_cbRightAction.SelectedIndex = (int)mySettings.GetValue("RightAction", (int)GestureAction.DockToRight);
+                m_cbDownAction.SelectedIndex = (int)mySettings.GetValue("DownAction", (int)GestureAction.ShowDesktop);
+                m_cbLeftAction.SelectedIndex = (int)mySettings.GetValue("LeftAction", (int)GestureAction.DockLeft);
+                m_cbRightAction.SelectedIndex = (int)mySettings.GetValue("RightAction", (int)GestureAction.DockRight);
             }
 
             m_cbUpAction.SelectedIndexChanged += gestureActionChanged;
@@ -106,7 +94,8 @@ namespace SharpTouch
             ComboBox cb = (ComboBox)sender;
             using (RegistryKey mySettings = Registry.CurrentUser.CreateSubKey(settingsKeyName))
             {
-                mySettings.SetValue((string)cb.Tag, cb.SelectedIndex);
+                Gesture g = (Gesture)cb.SelectedItem;
+                mySettings.SetValue((string)cb.Tag, (int)g.ActionCode);
                 if (SettingsChanged != null)
                     SettingsChanged();
             }
@@ -114,18 +103,7 @@ namespace SharpTouch
 
         void FillComboBox(ComboBox cb)
         {
-            string[] items =
-            {
-                "Aero Peek",
-                "Flip2D",
-                "Flip3D",
-                "Minimize Other Windows",
-                "Dock Window to Left",
-                "Dock Window to Right",
-                "Maximize Window",
-                "Minimize Window"
-            };
-            cb.Items.AddRange(items);
+            cb.Items.AddRange(Gesture.AllGestures);
         }
 
         private void ControlPanel_FormClosing(object sender, FormClosingEventArgs e)
