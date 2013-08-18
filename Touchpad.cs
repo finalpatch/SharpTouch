@@ -220,10 +220,10 @@ namespace SharpTouch
 
         void DoScroll(int dx, int dy)
         {
-            dx = dx * xScrollScale / 1000;
-            dy = dy * yScrollScale / 1000;
-            mouse_event(MOUSEEVENTF_WHEEL, 0, 0, dy, 0);
-            mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, dx, 0);
+            if (dy != 0)
+                mouse_event(MOUSEEVENTF_WHEEL, 0, 0, dy * yScrollScale / 1000, 0);
+            if (dx != 0)
+                mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, dx * xScrollScale / 1000, 0);
         }
 
         void DoKeySeq(Keys[] keys)
